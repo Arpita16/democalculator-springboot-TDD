@@ -16,6 +16,10 @@ public class DemocalculatorappApplication {
     }
 
     public int division(int i, int j) {
+
+    if (j == 0) {
+            throw new ArithmeticException("Division by zero is not allowed");
+        }
       
        return i / j;
     }

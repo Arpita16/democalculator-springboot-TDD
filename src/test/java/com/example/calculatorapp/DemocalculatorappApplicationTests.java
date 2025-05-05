@@ -1,11 +1,11 @@
 package com.example.calculatorapp;
 
-import static org.junit.Assert.assertEquals;
+// Removed unused import to resolve ambiguity
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -42,17 +42,13 @@ public class DemocalculatorappApplicationTests {
 	}
 	@Test
 	public void divisionByZero() {
-		Integer result = null;
-try {
-	   result = calculator.division(10, 0);
-	  
-	} catch (ArithmeticException e) {	
-	   // Handle the exception
-	  
-	}
-	assertNull(result,"verify the result is null");
-	}
 
+	ArithmeticException e = assertThrows(ArithmeticException.class, () -> {
+		calculator.division(10, 0);
+	});
+		
+	assertEquals("Division by zero is not allowed", e.getMessage());
+	}
 
 @Test
 public void divisionByZeroNotNull() {
